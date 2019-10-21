@@ -6,6 +6,8 @@ import { authenticationService } from '@/_services';
 import { PrivateRoute } from '@/_components';
 import { HomePage } from '@/HomePage';
 import { AdminPage } from '@/AdminPage';
+import { AtendentePage } from '@/AtendentePage';
+import { ClientePage } from '@/ClientePage';
 import { LoginPage } from '@/LoginPage';
 
 class App extends React.Component {
@@ -14,7 +16,9 @@ class App extends React.Component {
 
         this.state = {
             currentUser: null,
-            isAdmin: false
+            isAdmin: false,
+            isAtendente: false,
+            isCliente: false
         };
     }
 
@@ -42,8 +46,8 @@ class App extends React.Component {
                             <div className="navbar-nav">
                                 <Link to="/" className="nav-item nav-link">Home</Link>
                                 {isAdmin && <Link to="/cadastrar-produto" className="nav-item nav-link">Cadastrar Produto</Link>}
-                                {isAtendente && <Link to="/cadastrar-servico" className="nav-item nav-link">Cadastrar Serviço</Link>}
-                                {isCliente && <Link to="/servicos-realiados" className="nav-item nav-link">Serviços Realizados</Link>}
+                                {isAtendente && <Link to="/cadastrar-pet" className="nav-item nav-link">Cadastrar Pet</Link>}
+                                {isCliente && <Link to="/servicos-realizados" className="nav-item nav-link">Serviços Realizados</Link>}
                                 <a onClick={this.logout} className="nav-item nav-link">Logout</a>
                             </div>
                         </nav>
@@ -53,7 +57,9 @@ class App extends React.Component {
                             <div className="row">
                                 <div className="col-md-6 offset-md-3">
                                     <PrivateRoute exact path="/" component={HomePage} />
-                                    <PrivateRoute path="/admin" roles={[Role.Admin]} component={AdminPage} />
+                                    <PrivateRoute path="/cadastrar-produto" roles={[Role.Admin]} component={AdminPage} />
+                                    <PrivateRoute path="/cadastrar-pet" roles={[Role.Atendente]} component={AtendentePage} />
+                                    <PrivateRoute path="/servicos-realizados" roles={[Role.Cliente]} component={ClientePage} />
                                     <Route path="/login" component={LoginPage} />
                                 </div>
                             </div>
