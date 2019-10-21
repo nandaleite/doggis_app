@@ -19,18 +19,17 @@ class AdminPage extends React.Component {
         const { users } = this.state;
         return (
             <div>
-                <h1>Admin</h1>
-                <p>This page can only be accessed by administrators.</p>
-                <div>
-                    All users from secure (admin only) api end point:
-                    {users &&
-                        <ul>
-                            {users.map(user =>
-                                <li key={user.id}>{user.firstName} {user.lastName}</li>
-                            )}
-                        </ul>
-                    }
-                </div>
+                <h1>Cadastrar Produto</h1>
+                <form>
+                    <input placeholder="Título" name="titulo"></input><br />
+                    <input placeholder="Fabricante" name="fabricante"></input><br />
+                    <textarea name="especificacoes">Especificações</textarea><br />
+                    <input placeholder="Preço" name="preco"></input><br />
+                    <input placeholder="Código" name="codigo"></input><br />
+                    <input placeholder="Fotos" type="file" name="fotos"></input><br />
+                    <input type="submit" value="Salvar"></input>
+                    <button>Cancelar</button>
+                </form>
             </div>
         );
     }
